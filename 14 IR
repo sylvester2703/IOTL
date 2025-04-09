@@ -1,0 +1,43 @@
+// Pin assignments
+const int ledPin = 4;         // Pin connected to LED
+const int irSensorPin = 9;    // Pin connected to IR sensor output
+
+void setup() {
+  pinMode(ledPin, OUTPUT);       // Set LED pin as output
+  pinMode(irSensorPin, INPUT);   // Set IR sensor pin as input
+
+  digitalWrite(ledPin, LOW);     // Start with LED OFF
+  Serial.begin(9600);            // Optional: For debugging via serial monitor
+}
+
+void loop() {
+  int sensorValue = digitalRead(irSensorPin);  // Read sensor output
+
+  if (sensorValue == HIGH) {
+    // Obstacle detected
+    digitalWrite(ledPin, HIGH);    // Turn ON LED
+    Serial.println("Obstacle Detected");
+  } else {
+    // No obstacle
+    digitalWrite(ledPin, LOW);     // Turn OFF LED
+    Serial.println("Path Clear");
+  }
+
+  delay(100); // Small delay for stability
+}
+/*
+void setup()
+{
+pinMode(4,OUTPUT);
+pinMode(9,INPUT);
+digitalWrite(4,HIGH);
+}
+
+void loop()
+{
+if(digitalRead(9)== 1)
+digitalWrite(4,HIGH);
+else
+digitalWrite(4,LOW);
+}
+*/
